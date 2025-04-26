@@ -1,4 +1,4 @@
-#include "SplitFunctions.h"
+ï»¿#include "SplitFunctions.h"
 
 
 void FillRand(int arr[], const int n)
@@ -33,7 +33,7 @@ void Separate(int arr[], int arr_e[], int arr_o[], const int n, const int n_e, c
 		{
 			if (i_e == n_e)
 			{
-				cout << "Îøèáêà ïåðåïîëíåíèÿ ÷åòíîãî ìàññèâà!";
+				cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿ÐµÑ€ÐµÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ñ‡ÐµÑ‚Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°!";
 				return;
 			}
 			else
@@ -46,7 +46,7 @@ void Separate(int arr[], int arr_e[], int arr_o[], const int n, const int n_e, c
 		{
 			if (i_o == n_o)
 			{
-				cout << "Îøèáêà ïåðåïîëíåíèÿ íå÷åòíîãî ìàññèâà!";
+				cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿ÐµÑ€ÐµÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð½ÐµÑ‡ÐµÑ‚Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°!";
 				return;
 			}
 			else

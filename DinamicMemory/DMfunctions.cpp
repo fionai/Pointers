@@ -1,4 +1,4 @@
-#include "DMfunctions.h"
+ï»¿#include "DMfunctions.h"
 
 
 void FillRand(int arr[], const int n)
@@ -16,13 +16,13 @@ void Print(int arr[], const int n)
 		cout << arr[i] << " ";
 	cout << endl;
 }
-void push_front(int a, int arr[], const int n, int brr[]) //äîáàâëÿåò À â íà÷àëî ìàññèâà
+void push_front(int a, int arr[], const int n, int brr[]) //Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÑ‚ Ð Ð² Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°
 {
 	brr[0] = a;
 	for (int i = 0; i < n; i++)
 		brr[i + 1] = arr[i];
 }
-void insert(int a, int k, int arr[], const int n, int brr[]) //äîáàâëÿåò ÷èñëî à ïî óêàçàííîìó èíäåêñó k 
+void insert(int a, int k, int arr[], const int n, int brr[]) //Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÑ‚ Ñ‡Ð¸ÑÐ»Ð¾ Ð° Ð¿Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ð¾Ð¼Ñƒ Ð¸Ð½Ð´ÐµÐºÑÑƒ k 
 {
 	for (int i = 0; i <= n; i++)
 	{
@@ -34,17 +34,17 @@ void insert(int a, int k, int arr[], const int n, int brr[]) //äîáàâëÿåò ÷èñëî à
 			brr[i] = arr[i - 1];
 	}
 }
-void pop_back(int arr[], const int n, int brr[]) //óäàëÿåò ïîñëåäíèé ýëåìåíò ìàññèâà
+void pop_back(int arr[], const int n, int brr[]) //ÑƒÐ´Ð°Ð»ÑÐµÑ‚ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¼Ð°ÑÑÐ¸Ð²Ð°
 {
 	for (int i = 0; i < n - 1; i++)
 		brr[i] = arr[i];
 }
-void pop_front(int arr[], const int n, int brr[])	//óäàëÿåò íóëåâîé ýëåìåíò ìàññèâà
+void pop_front(int arr[], const int n, int brr[])	//ÑƒÐ´Ð°Ð»ÑÐµÑ‚ Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¼Ð°ÑÑÐ¸Ð²Ð°
 {
 	for (int i = 0; i < n - 1; i++)
 		brr[i] = arr[i + 1];
 }
-void erase(int k, int arr[], const int n, int brr[])		//óäàëÿåò ýëåìåíò ìàññèâà ïî óêàçàííîìó èíäåêñó k
+void erase(int k, int arr[], const int n, int brr[])		//ÑƒÐ´Ð°Ð»ÑÐµÑ‚ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¼Ð°ÑÑÐ¸Ð²Ð° Ð¿Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ð¾Ð¼Ñƒ Ð¸Ð½Ð´ÐµÐºÑÑƒ k
 {
 	for (int i = 0; i < n; i++)
 	{
