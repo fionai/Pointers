@@ -5,7 +5,7 @@ using namespace std;
 
 void FillRand(int arr[], const int n);
 void Print(int arr[], const int n);
-int FindE(int arr[], const int n);
+int CountE(int arr[], const int n);
 void Separate(int arr[], int arr_e[], int arr_o[], const int n, const int n_e = 0, const int n_o = 0);
 
 void main()
@@ -17,7 +17,7 @@ void main()
 	FillRand(arr, n);
 	cout << "Исходный массив: \n";
 	Print(arr, n);
-	n_e = FindE(arr, n);
+	n_e = CountE(arr, n);
 	n_o = n - n_e;
 	//cout << "в массиве " << n_e << " четных чисел и " << n_o << " нечетных.\n";
 
@@ -50,7 +50,7 @@ void Print(int arr[], const int n)
 		cout << arr[i] << " ";
 	cout << endl;
 }
-int FindE(int arr[], const int n)
+int CountE(int arr[], const int n)
 {
 	int n_e = 0;
 	for (int i = 0; i < n; i++)
