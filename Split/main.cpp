@@ -1,6 +1,6 @@
 ﻿
 #include "stdafx.h"
-#include "DMfunctions.h"
+#include "SplitFunctions.h"
 //using namespace std;
 
 void main()

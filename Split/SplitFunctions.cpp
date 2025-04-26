@@ -1,4 +1,4 @@
-#include "DMfunctions.h"
+#include "SplitFunctions.h"
 
 
 void FillRand(int arr[], const int n)

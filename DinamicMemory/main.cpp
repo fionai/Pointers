@@ -1,5 +1,6 @@
-#include<iostream>
-using namespace std;
+#include "stdafx.h"
+
+//using namespace std;
 
 void main()
 {
@@ -8,15 +9,7 @@ void main()
 	cout << "¬ведите размер массива: "; cin >> n;
 	int* arr = new int[n];
 	
-	for (int i = 0; i < n; i++)
-	{
-		arr[i] = rand() % 100; // index operator; subscript operator
-	}
-	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] << "\t";
-	}
-	cout << endl;
+
 
 	delete[] arr; // memory leak
 
