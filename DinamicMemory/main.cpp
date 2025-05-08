@@ -13,40 +13,46 @@ void main()
 	FillRand(arr, n);
 	Print(arr, n);
 
-	int* brr = new int[n + 1];
 	int a;
 	cout << "Введите число для добавления его в начало массива: "; cin >> a;
-	push_front(a, arr, n, brr);
-	Print(brr, n + 1);
+	arr = push_front(arr, n, a);
+	n++;
+	Print(arr, n);
+
+	cout << "\nВведите число для добавления его в конец массива: "; cin >> a;
+	arr = push_back(arr, n, a);
+	n++;
+	Print(arr, n);
 
 	int j = 0, k = 0;
-	cout << "\nВведите число для добавления его в исходный массив: "; cin >> a;
+	cout << "\nВведите число для добавления его в массив: "; cin >> a;
 	cout << "Введите индекс для добавления нового числа: "; cin >> k;
 	while (k > n || k < 0)
 	{
 		cout << "Невозможно вставить число в позицию " << k << ", введите число от 0 до " << n <<": "; cin >> k;
 	}
-	insert(a, k, arr, n, brr);
-	Print(brr, n + 1);
-	delete[] brr;
+	arr = insert(arr, n, a, k);
+	n++;
+	Print(arr, n);
 
-	brr = new int[n - 1];
-	pop_back(arr, n, brr);
-	cout << "\nУдалили последний элемент исходного массива:\n";
-	Print(brr, n - 1);
+	arr = pop_back(arr, n);
+	cout << "\nУдалили последний элемент массива:\n";
+	n--;
+	Print(arr, n);
 
-	pop_front(arr, n, brr);
-	cout << "\nУдалили нулевой элемент исходного массива:\n";
-	Print(brr, n - 1);
+	arr = pop_front(arr, n);
+	cout << "\nУдалили нулевой элемент массива:\n";
+	n--;
+	Print(arr, n);
 
 	cout << "\nВведите индекс для удаления числа: "; cin >> k;
 	while (k > n -1 || k < 0)
 	{
-		cout << "Невозможно вставить число в позицию " << k << ", введите число от 0 до " << n - 1 << ": "; cin >> k;
+		cout << "Невозможно удалить число из позиции " << k << ", введите число от 0 до " << n - 1 << ": "; cin >> k;
 	}
-	erase(k, arr, n, brr);
-	Print(brr, n - 1);
+	arr = erase(arr, n, k);
+	n--;
+	Print(arr, n);
 
 	delete[] arr; // memory leak
-	delete[] brr;
 }

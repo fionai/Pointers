@@ -16,42 +16,65 @@ void Print(int arr[], const int n)
 		cout << arr[i] << " ";
 	cout << endl;
 }
-void push_front(int a, int arr[], const int n, int brr[]) //добавляет А в начало массива
+int* push_back(int arr[], const int n, int value)
 {
-	brr[0] = a;
+	int* buf = new int[n + 1];
 	for (int i = 0; i < n; i++)
-		brr[i + 1] = arr[i];
+		buf[i] = arr[i];
+	buf[n] = value;
+	delete[] arr;
+	return buf;
 }
-void insert(int a, int k, int arr[], const int n, int brr[]) //добавляет число а по указанному индексу k 
+int* push_front(int arr[], const int n, int value)// , int brr[]) //добавляет А в начало массива
 {
+	int* buf = new int[n + 1];
+	for (int i = 0; i < n; i++)
+		buf[i+1] = arr[i];
+	buf[0] = value;
+	delete[] arr;
+	return buf;
+}
+int* insert(int arr[], const int n, int value, int k) //добавляет число а по указанному индексу k 
+{
+	int* buf = new int[n + 1];
 	for (int i = 0; i <= n; i++)
 	{
 		if (i < k)
-			brr[i] = arr[i];
+			buf[i] = arr[i];
 		else if (i == k)
-			brr[i] = a;
+			buf[i] = value;
 		else if (i > k)
-			brr[i] = arr[i - 1];
+			buf[i] = arr[i - 1];
 	}
+	delete[] arr;
+	return buf;
 }
-void pop_back(int arr[], const int n, int brr[]) //удаляет последний элемент массива
+int* pop_back(int arr[], const int n) //удаляет последний элемент массива
 {
+	int* buf = new int[n - 1];
 	for (int i = 0; i < n - 1; i++)
-		brr[i] = arr[i];
+		buf[i] = arr[i];
+	delete[] arr;
+	return buf;
 }
-void pop_front(int arr[], const int n, int brr[])	//удаляет нулевой элемент массива
+int* pop_front(int arr[], const int n)	//удаляет нулевой элемент массива
 {
+	int* buf = new int[n - 1];
 	for (int i = 0; i < n - 1; i++)
-		brr[i] = arr[i + 1];
+		buf[i] = arr[i+1];
+	delete[] arr;
+	return buf;
 }
-void erase(int k, int arr[], const int n, int brr[])		//удаляет элемент массива по указанному индексу k
+int* erase(int arr[], const int n, int k)		//удаляет элемент массива по указанному индексу k
 {
+	int* buf = new int[n];
 	for (int i = 0; i < n; i++)
 	{
 		if (i < k)
-			brr[i] = arr[i];
+			buf[i] = arr[i];
 		else if (i > k)
-			brr[i - 1] = arr[i];
+			buf[i - 1] = arr[i];
 	}
-
+	delete[] arr;
+	return buf;
 }
