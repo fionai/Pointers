@@ -2,6 +2,11 @@
 
 #include "stdafx.h"
 
+template <typename T>
+void Allocate(T** arr, const int rows, const int cols); //Выделяет память под двумерный динамический массив
+template <typename T>
+void Clear(T** arr, const int rows, const int cols);    //Удаляет память, занимаемую мерным динамическим массивом
+
 
 template <typename T>
 void FillRand(T arr[], const int n);

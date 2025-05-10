@@ -61,17 +61,14 @@ void main()
 
 #ifdef DYNAMIC_MEMORY_2
 
-	int rows = 3, cols = 5; //для ускорения при отладке ввела сразу
+	int rows = 4, cols = 5; //для ускорения при отладке ввела сразу
 	int n;
 	cout << "Введите количество строк: 3\n"; //cin >> rows;
 	cout << "Введите количество элементов строки: 5"; //cin >> cols;
 
 	//создаем массив указателей
 	int** arr = new int* [rows];
-
-	//выделяем память под строки двумерного динамического массива
-	for (int i = 0; i < rows; i++)
-		arr[i] = new int[cols];
+	Allocate(arr, rows, cols);
 
 	//Заполняем массив
 	FillRand(arr, rows, cols);
@@ -91,9 +88,9 @@ void main()
 	arr = push_row_back(arr, rows, cols);
 	cout << "\n\nДобавили строку в конце\n";
 	Print(arr, rows, cols);
-	
-	cout << "\n\nВведите индекс добавляемой строки: "; cin >> n;	
-	while (n < 0 || n >= rows)
+
+	cout << "\n\nВведите индекс добавляемой строки: "; cin >> n;
+	while (n < 0 || n > rows)
 	{
 		cout << "Введите число от 0 до " << rows << ": "; cin >> n;
 	}
@@ -109,7 +106,7 @@ void main()
 	Print(arr, rows, cols);
 
 	cout << "\n\nВведите индекс добавляемого столбца: "; cin >> n;
-	while (n < 0 || n >= cols)
+	while (n < 0 || n > cols)
 	{
 		cout << "Введите число от 0 до " << cols << ": "; cin >> n;
 	}
@@ -125,9 +122,9 @@ void main()
 	Print(arr, rows, cols);
 
 	cout << "\n\nВведите индекс удаляемой строки: "; cin >> n;
-	while (n < 0 || n > rows)
+	while (n < 0 || n >= rows)
 	{
-		cout << "Введите число от 0 до " << rows-1 << ": "; cin >> n;
+		cout << "Введите число от 0 до " << rows - 1 << ": "; cin >> n;
 	}
 	arr = erase_row(arr, rows, cols, n);
 	Print(arr, rows, cols);
@@ -141,28 +138,14 @@ void main()
 	Print(arr, rows, cols);
 
 	cout << "\n\nВведите индекс удаляемого столбца: "; cin >> n;
-	while (n < 0 || n > cols)
+	while (n < 0 || n >= cols)
 	{
 		cout << "Введите число от 0 до " << cols - 1 << ": "; cin >> n;
 	}
 	arr = erase_col(arr, rows, cols, n);
 	Print(arr, rows, cols);
 
-
-
-
-
-
-
-
-
-	//удаляем строки
-	for (int i = 0; i < rows; i++)
-	{
-		delete[] arr[i];
-	}
-	//удаляем массив указателей
-	delete[] arr;
+	Clear(arr, rows, cols);
 #endif // DYNAMIC_MEMORY_2
 
 }
