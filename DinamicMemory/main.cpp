@@ -16,12 +16,10 @@ void main()
 	int a;
 	cout << "Введите число для добавления его в начало массива: "; cin >> a;
 	arr = push_front(arr, n, a);
-	n++;
 	Print(arr, n);
 
 	cout << "\nВведите число для добавления его в конец массива: "; cin >> a;
 	arr = push_back(arr, n, a);
-	n++;
 	Print(arr, n);
 
 	int j = 0, k = 0;
@@ -32,17 +30,14 @@ void main()
 		cout << "Невозможно вставить число в позицию " << k << ", введите число от 0 до " << n <<": "; cin >> k;
 	}
 	arr = insert(arr, n, a, k);
-	n++;
 	Print(arr, n);
 
 	arr = pop_back(arr, n);
 	cout << "\nУдалили последний элемент массива:\n";
-	n--;
 	Print(arr, n);
 
 	arr = pop_front(arr, n);
 	cout << "\nУдалили нулевой элемент массива:\n";
-	n--;
 	Print(arr, n);
 
 	cout << "\nВведите индекс для удаления числа: "; cin >> k;
@@ -51,7 +46,6 @@ void main()
 		cout << "Невозможно удалить число из позиции " << k << ", введите число от 0 до " << n - 1 << ": "; cin >> k;
 	}
 	arr = erase(arr, n, k);
-	n--;
 	Print(arr, n);
 
 	delete[] arr; // memory leak

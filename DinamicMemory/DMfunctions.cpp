@@ -16,25 +16,27 @@ void Print(int arr[], const int n)
 		cout << arr[i] << " ";
 	cout << endl;
 }
-int* push_back(int arr[], const int n, int value)
+int* push_back(int arr[], int& n, int value)
 {
 	int* buf = new int[n + 1];
 	for (int i = 0; i < n; i++)
 		buf[i] = arr[i];
 	buf[n] = value;
 	delete[] arr;
+	n++;
 	return buf;
 }
-int* push_front(int arr[], const int n, int value)// , int brr[]) //добавляет А в начало массива
+int* push_front(int arr[], int& n, int value)// , int brr[]) //добавляет А в начало массива
 {
 	int* buf = new int[n + 1];
 	for (int i = 0; i < n; i++)
 		buf[i+1] = arr[i];
 	buf[0] = value;
 	delete[] arr;
+	n++;
 	return buf;
 }
-int* insert(int arr[], const int n, int value, int k) //добавляет число а по указанному индексу k 
+int* insert(int arr[], int& n, int value, int k) //добавляет число а по указанному индексу k 
 {
 	int* buf = new int[n + 1];
 	for (int i = 0; i <= n; i++)
@@ -47,28 +49,29 @@ int* insert(int arr[], const int n, int value, int k) //добавляет чи�
 			buf[i] = arr[i - 1];
 	}
 	delete[] arr;
+	n++;
 	return buf;
 }
-int* pop_back(int arr[], const int n) //удаляет последний элемент массива
+int* pop_back(int arr[], int& n) //удаляет последний элемент массива
 {
-	int* buf = new int[n - 1];
-	for (int i = 0; i < n - 1; i++)
+	int* buf = new int[--n];
+	for (int i = 0; i < n; i++)
 		buf[i] = arr[i];
 	delete[] arr;
 	return buf;
 }
-int* pop_front(int arr[], const int n)	//удаляет нулевой элемент массива
+int* pop_front(int arr[], int& n)	//удаляет нулевой элемент массива
 {
-	int* buf = new int[n - 1];
-	for (int i = 0; i < n - 1; i++)
+	int* buf = new int[--n];
+	for (int i = 0; i < n; i++)
 		buf[i] = arr[i+1];
 	delete[] arr;
 	return buf;
 }
-int* erase(int arr[], const int n, int k)		//удаляет элемент массива по указанному индексу k
+int* erase(int arr[], int& n, int k)		//удаляет элемент массива по указанному индексу k
 {
-	int* buf = new int[n];
-	for (int i = 0; i < n; i++)
+	int* buf = new int[--n];
+	for (int i = 0; i < n+1; i++)
 	{
 		if (i < k)
 			buf[i] = arr[i];
