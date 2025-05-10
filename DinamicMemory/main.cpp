@@ -2,7 +2,6 @@
 #include "DMfunctions.h"
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
-//#define tab "\t"
 
 using std::cin;
 using std::cout;
@@ -62,9 +61,12 @@ void main()
 	delete[] arr; // memory leak
 #endif // DYNAMIC_MEMORY_1
 
-	int rows, cols;
-	cout << "Введите количество строк: "; cin >> rows;
-	cout << "Введите количество элементов строки: "; cin >> cols;
+#ifdef DYNAMIC_MEMORY_2
+
+	int rows = 3, cols = 5; //для ускорения при отладке ввела сразу
+	int n;
+	cout << "Введите количество строк: 3\n"; //cin >> rows;
+	cout << "Введите количество элементов строки: 5"; //cin >> cols;
 
 	//создаем массив указателей
 	int** arr = new int* [rows];
@@ -76,11 +78,85 @@ void main()
 	//Заполняем массив
 	FillRand(arr, rows, cols);
 
+	cout << "\n================Печать с помощью арифметики указателей:===============\n";
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+			cout << *(*(arr + i) + j) << "\t";
+		cout << endl;
+	}
+
+	arr = push_row_front(arr, rows, cols);
+	cout << "\n\nДобавили строку в начале\n";
 	Print(arr, rows, cols);
 
 	arr = push_row_back(arr, rows, cols);
 	cout << "\n\nДобавили строку в конце\n";
 	Print(arr, rows, cols);
+	
+	cout << "\n\nВведите индекс добавляемой строки: "; cin >> n;	
+	while (n < 0 || n >= rows)
+	{
+		cout << "Введите число от 0 до " << rows << ": "; cin >> n;
+	}
+	arr = insert_row(arr, rows, cols, n);
+	Print(arr, rows, cols);
+
+	arr = push_col_front(arr, rows, cols);
+	cout << "\n\nДобавили столбец в начале\n";
+	Print(arr, rows, cols);
+
+	arr = push_col_back(arr, rows, cols);
+	cout << "\n\nДобавили столбец в конце\n";
+	Print(arr, rows, cols);
+
+	cout << "\n\nВведите индекс добавляемого столбца: "; cin >> n;
+	while (n < 0 || n >= cols)
+	{
+		cout << "Введите число от 0 до " << cols << ": "; cin >> n;
+	}
+	arr = insert_col(arr, rows, cols, n);
+	Print(arr, rows, cols);
+
+	arr = pop_row_front(arr, rows, cols);
+	cout << "\n\nУдалили строку в начале\n";
+	Print(arr, rows, cols);
+
+	arr = pop_row_back(arr, rows, cols);
+	cout << "\n\nУдалили строку в конце\n";
+	Print(arr, rows, cols);
+
+	cout << "\n\nВведите индекс удаляемой строки: "; cin >> n;
+	while (n < 0 || n > rows)
+	{
+		cout << "Введите число от 0 до " << rows-1 << ": "; cin >> n;
+	}
+	arr = erase_row(arr, rows, cols, n);
+	Print(arr, rows, cols);
+
+	arr = pop_col_front(arr, rows, cols);
+	cout << "\n\nУдалили столбец в начале\n";
+	Print(arr, rows, cols);
+
+	arr = pop_col_back(arr, rows, cols);
+	cout << "\n\nУдалили столбец в конце\n";
+	Print(arr, rows, cols);
+
+	cout << "\n\nВведите индекс удаляемого столбца: "; cin >> n;
+	while (n < 0 || n > cols)
+	{
+		cout << "Введите число от 0 до " << cols - 1 << ": "; cin >> n;
+	}
+	arr = erase_col(arr, rows, cols, n);
+	Print(arr, rows, cols);
+
+
+
+
+
+
+
+
 
 	//удаляем строки
 	for (int i = 0; i < rows; i++)
@@ -89,5 +165,6 @@ void main()
 	}
 	//удаляем массив указателей
 	delete[] arr;
+#endif // DYNAMIC_MEMORY_2
 
 }
