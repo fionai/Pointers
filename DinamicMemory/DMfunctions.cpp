@@ -1,5 +1,21 @@
 ﻿#include "DMfunctions.h"
 
+void Allocate(int** arr, const int rows, const int cols) //Выделяет память под двумерный динамический массив
+{
+	//выделяем память под строки двумерного динамического массива
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[cols];
+}
+void Clear(int** arr, const int rows, const int cols)	 //Удаляет память, занимаемую мерным динамическим массивом
+{
+	//удаляем строки
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	//удаляем массив указателей
+	delete[] arr;
+}
 
 void FillRand(int arr[], const int n)
 {

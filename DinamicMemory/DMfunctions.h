@@ -2,6 +2,9 @@
 
 #include "stdafx.h"
 
+void Allocate(int** arr, const int rows, const int cols); //Выделяет память под двумерный динамический массив
+void Clear(int** arr, const int rows, const int cols);    //Удаляет память, занимаемую мерным динамическим массивом
+
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
 
