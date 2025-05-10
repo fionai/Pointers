@@ -32,9 +32,10 @@ void main()
 	arr = insert(arr, n, a, k);
 	Print(arr, n);
 
-	arr = pop_back(arr, n);
 	cout << "\nУдалили последний элемент массива:\n";
-	Print(arr, n);
+	//arr = pop_back(arr, n);
+	//Print(arr, n);
+	Print(arr = pop_back(arr, n), n);
 
 	arr = pop_front(arr, n);
 	cout << "\nУдалили нулевой элемент массива:\n";
