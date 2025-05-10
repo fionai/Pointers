@@ -3,6 +3,26 @@
 #include "DMfunctions.h"
 
 template <typename T>
+void Allocate(T** arr, const int rows, const int cols) //Выделяет память под двумерный динамический массив
+{
+	//выделяем память под строки двумерного динамического массива
+	for (int i = 0; i < rows; i++)
+		arr[i] = new T[cols];
+}
+template <typename T>
+void Clear(T** arr, const int rows, const int cols)	 //Удаляет память, занимаемую мерным динамическим массивом
+{
+	//удаляем строки
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	//удаляем массив указателей
+	delete[] arr;
+}
+
+
+template <typename T>
 void FillRand(T arr[], const int n)
 {
 	int n_time = time(NULL) % 256;
