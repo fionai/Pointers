@@ -5,10 +5,13 @@
 
 template <typename T>
 void FillRand(T arr[], const int n);
-
+template <typename T>
+void FillRand(T** arr, const int rows, const int cols);
 
 template <typename T>
 void Print(T arr[], const int n);
+template <typename T>
+void Print(T** arr, const int rows, const int cols);
 
 template <typename T>
 T* push_back(T arr[], int& n, int value); //добавляет значение в конец массива
@@ -23,10 +26,6 @@ T* pop_front(T arr[], int& n);	//удаляет нулевой элемент м
 template <typename T>
 T* erase(T arr[], int& n, int k);		//удаляет элемент массива по указанному индексу k
 
-template <typename T>
-void FillRand(T** arr, const int rows, const int cols);
-template <typename T>
-void Print(T** arr, const int rows, const int cols);
 template <typename T>
 T** push_row_front(T** arr, int& rows, const int cols); //добавляет строку в начало массива
 template <typename T>

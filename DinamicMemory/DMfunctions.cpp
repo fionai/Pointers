@@ -5,43 +5,46 @@
 template <typename T>
 void FillRand(T arr[], const int n)
 {
-	int n_time = time(NULL) % 256;
+	int n_time = time(NULL) % 100;
 	for (int i = 0; i < n; i++)
 	{
-		arr[i] = (rand() + n_time) % 256;
-		n_time = (n_time + time(NULL) + 1) % 256;
+		arr[i] = (rand() + n_time) % 100;
+		n_time = (n_time + time(NULL) + 1) % 100;
 	}
+}
+template <typename T>
+void FillRand(T** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+		FillRand(arr[i], cols);			//Оптимизация 1. Вызов другой функции
 }
 
 template <typename T>
 void Print(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
+		cout << arr[i] << "\t";
 	cout << endl;
+}
+template <typename T>
+void Print(T** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+		Print(arr[i], cols);		//Оптимизация 2.
+
 }
 
 template <typename T>
 T* push_back(T arr[], int& n, int value)
 {
-	T* buf = new T[n + 1];
-	for (int i = 0; i < n; i++)
-		buf[i] = arr[i];
-	buf[n] = value;
-	delete[] arr;
-	n++;
-	return buf;
+	arr = insert(arr, n, value, n);		//Оптимизация 3
+	return arr;
 }
 template <typename T>
-T* push_front(T arr[], int& n, int value)// , int brr[]) //добавляет значение в начало массива
+T* push_front(T arr[], int& n, int value)//добавляет значение в начало массива
 {
-	T* buf = new T[n + 1];
-	for (int i = 0; i < n; i++)
-		buf[i+1] = arr[i];
-	buf[0] = value;
-	delete[] arr;
-	n++;
-	return buf;
+	arr = insert(arr, n, value, 0);		//Оптимизация 3
+	return arr;
 }
 template <typename T>
 T* insert(T arr[], int& n, int value, int k) //добавляет значение по указанному индексу k 
@@ -51,32 +54,26 @@ T* insert(T arr[], int& n, int value, int k) //добавляет значени
 	{
 		if (i < k)
 			buf[i] = arr[i];
-		else if (i == k)
-			buf[i] = value;
 		else if (i > k)
 			buf[i] = arr[i - 1];
 	}
+	buf[k] = value;
 	delete[] arr;
 	n++;
 	return buf;
 }
+
 template <typename T>
 T* pop_back(T arr[], int& n) //удаляет последний элемент массива
 {
-	T* buf = new T[--n];
-	for (int i = 0; i < n; i++)
-		buf[i] = arr[i];
-	delete[] arr;
-	return buf;
+	arr = erase(arr, n, n - 1);		//Оптимизация 4
+	return arr;
 }
 template <typename T>
 T* pop_front(T arr[], int& n)	//удаляет нулевой элемент массива
 {
-	T* buf = new T[--n];
-	for (int i = 0; i < n; i++)
-		buf[i] = arr[i+1];
-	delete[] arr;
-	return buf;
+	arr = erase(arr, n, 0);			//Оптимизация 4
+	return arr;
 }
 template <typename T>
 T* erase(T arr[], int& n, int k)		//удаляет элемент массива по указанному индексу k
@@ -92,23 +89,7 @@ T* erase(T arr[], int& n, int k)		//удаляет элемент массива
 	delete[] arr;
 	return buf;
 }
-template <typename T>
-void FillRand(T** arr, const int rows, const int cols)
-{
-	for (int i = 0; i < rows; i++)
-		for (int j = 0; j < cols; j++)
-			arr[i][j] = rand() % 100;
-}
-template <typename T>
-void Print(T** arr, const int rows, const int cols)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-			cout << arr[i][j] << "\t";
-		cout << endl;
-	}
-}
+
 template <typename T>
 T** push_row_front(T** arr, int& rows, const int cols)
 {

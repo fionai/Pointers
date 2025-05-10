@@ -1,5 +1,4 @@
-﻿#include <string.h>
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #include "DMfunctions.h"
 #include "DMfunctions.cpp"
@@ -19,11 +18,11 @@ void main()
 
 	int n;
 	cout << "Введите размер массива: "; cin >> n;
-	char* arr = new char[n];
+	int* arr = new int[n];
 	FillRand(arr, n);
 	Print(arr, n);
 
-	char a;
+	int a;
 	cout << "Введите элемент для добавления его в начало массива: "; cin >> a;
 	arr = push_front(arr, n, a);
 	Print(arr, n);
