@@ -118,7 +118,7 @@ T** push_row_front(T** arr, int& rows, const int cols)
 template <typename T>
 T** push_row_back(T** arr, int& rows, const int cols)
 {
-	arr = insert_row(arr, rows, cols, rows-1);   //Оптимизация 5
+	arr = insert_row(arr, rows, cols, rows);   //Оптимизация 5
 	return arr;
 }
 template <typename T>
@@ -126,7 +126,6 @@ T** insert_row(T** arr, int& rows, const int cols, int n)
 {
 	//создаем буферный массив указателей нужного размера
 	T** buf = new T* [rows + 1];
-
 
 	//копируем адреса строк в буферный массив указателей
 	for (int i = 0; i < n; i++)
@@ -157,7 +156,7 @@ T** push_col_front(T** arr, const int rows, int& cols) //добавляет ст
 template <typename T>
 T** push_col_back(T** arr, const int rows, int& cols) //добавляет столбец в конец массива
 {
-	arr = insert_col(arr, rows, cols, cols-1); //Оптимизация 6
+	arr = insert_col(arr, rows, cols, cols); //Оптимизация 6
 	return arr;
 }
 template <typename T>
@@ -173,9 +172,11 @@ T** insert_col(T** arr, const int rows, int& cols, int n) //добавляет �
 	{
 		for (int j = 0; j < n; j++)
 			buf[i][j] = arr[i][j];
-		buf[i][n] = 666; //заполняем последний столбец
+		buf[i][n] = 666; //заполняем новый столбец
 		for (int j = n; j < cols; j++)
 			buf[i][j+1] = arr[i][j];
+		//buf[i] = insert(arr[i], cols, 666, n);
+		//cols--;
 	}
 
 	//удаляем строки
