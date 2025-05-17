@@ -161,10 +161,8 @@ template <typename T>
 void insert_col(T** arr, const int rows, int& cols, int n, T value) //добавляет столбец в указанное место
 {
 	for (int i = 0; i < rows; i++)
-	{
-		arr[i] = insert(arr[i], cols, value, n); //======================новая оптимизация
-		cols--;
-	}
+		arr[i] = insert(arr[i], cols--, value, n); //======================новая оптимизация
+
 	//при добавлении в массив столбца, количество столбцов увеличивается на 1
 	++cols;
 }
@@ -216,9 +214,6 @@ template <typename T>
 void erase_col(T** arr, const int rows, int& cols, int n) //удаляет столбец в указанном месте
 {
 	for (int i = 0; i < rows; i++)
-	{
-		arr[i] = erase(arr[i], cols, n); //======================новая оптимизация
-		cols++;
-	}
+		arr[i] = erase(arr[i], cols++, n); //======================новая оптимизация
 	cols--;
 }
