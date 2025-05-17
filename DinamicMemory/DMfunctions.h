@@ -32,17 +32,17 @@ template <typename T>
 T* erase(T arr[], int& n, int k);		//удаляет элемент массива по указанному индексу k
 
 template <typename T>
-T** push_row_front(T** arr, int& rows, const int cols); //добавляет строку в начало массива
+T** push_row_front(T** arr, int& rows, const int cols, T value); //добавляет строку в начало массива
 template <typename T>
-T** push_row_back(T** arr, int& rows, const int cols); //добавляет строку в конец массива
+T** push_row_back(T** arr, int& rows, const int cols, T value); //добавляет строку в конец массива
 template <typename T>
-T** insert_row(T** arr, int& rows, const int cols, int n); //добавляет строку в указанное место
+T** insert_row(T** arr, int& rows, const int cols, int n, T value); //добавляет строку в указанное место
 template <typename T>
-T** push_col_front(T** arr, const int rows, int& cols); //добавляет столбец в начало массива
+void push_col_front(T** arr, const int rows, int& cols, T value); //добавляет столбец в начало массива
 template <typename T>
-T** push_col_back(T** arr, const int rows, int& cols); //добавляет столбец в конец массива
+void push_col_back(T** arr, const int rows, int& cols, T value); //добавляет столбец в конец массива
 template <typename T>
-T** insert_col(T** arr, const int rows, int& cols, int n); //добавляет столбец в указанное место
+void insert_col(T** arr, const int rows, int& cols, int n, T value); //добавляет столбец в указанное место
 template <typename T>
 T** pop_row_front(T** arr, int& rows, const int cols); //удаляет строку из начала массива
 template <typename T>
@@ -50,8 +50,8 @@ T** pop_row_back(T** arr, int& rows, const int cols); //удаляет стро�
 template <typename T>
 T** erase_row(T** arr, int& rows, const int cols, int n); //удаляет строку в указанном месте
 template <typename T>
-T** pop_col_front(T** arr, const int rows, int& cols); //удаляет столбец из начала массива
+void pop_col_front(T** arr, const int rows, int& cols); //удаляет столбец из начала массива
 template <typename T>
-T** pop_col_back(T** arr, const int rows, int& cols); //удаляет столбец в конце массива
-template <typename T>
-T** erase_col(T** arr, const int rows, int& cols, int n); //удаляет столбец в указанном месте
+void pop_col_back(T** arr, const int rows, int& cols); //удаляет столбец в конце массива
+template <typename T> 
+void erase_col(T** arr, const int rows, int& cols, int n); //удаляет столбец в указанном месте

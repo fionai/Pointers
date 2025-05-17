@@ -81,11 +81,11 @@ void main()
 		cout << endl;
 	}
 
-	arr = push_row_front(arr, rows, cols);
+	arr = push_row_front(arr, rows, cols, 111);
 	cout << "\n\nДобавили строку в начале\n";
 	Print(arr, rows, cols);
 
-	arr = push_row_back(arr, rows, cols);
+	arr = push_row_back(arr, rows, cols, 999);
 	cout << "\n\nДобавили строку в конце\n";
 	Print(arr, rows, cols);
 
@@ -94,14 +94,14 @@ void main()
 	{
 		cout << "Введите число от 0 до " << rows << ": "; cin >> n;
 	}
-	arr = insert_row(arr, rows, cols, n);
+	arr = insert_row(arr, rows, cols, n, 333);
 	Print(arr, rows, cols);
 
-	arr = push_col_front(arr, rows, cols);
+	push_col_front(arr, rows, cols, 222);
 	cout << "\n\nДобавили столбец в начале\n";
 	Print(arr, rows, cols);
 
-	arr = push_col_back(arr, rows, cols);
+	push_col_back(arr, rows, cols, 888);
 	cout << "\n\nДобавили столбец в конце\n";
 	Print(arr, rows, cols);
 
@@ -110,7 +110,7 @@ void main()
 	{
 		cout << "Введите число от 0 до " << cols << ": "; cin >> n;
 	}
-	arr = insert_col(arr, rows, cols, n);
+	insert_col(arr, rows, cols, n, 555);
 	Print(arr, rows, cols);
 
 	arr = pop_row_front(arr, rows, cols);
@@ -129,11 +129,11 @@ void main()
 	arr = erase_row(arr, rows, cols, n);
 	Print(arr, rows, cols);
 
-	arr = pop_col_front(arr, rows, cols);
+	pop_col_front(arr, rows, cols);
 	cout << "\n\nУдалили столбец в начале\n";
 	Print(arr, rows, cols);
 
-	arr = pop_col_back(arr, rows, cols);
+	pop_col_back(arr, rows, cols);
 	cout << "\n\nУдалили столбец в конце\n";
 	Print(arr, rows, cols);
 
@@ -142,7 +142,7 @@ void main()
 	{
 		cout << "Введите число от 0 до " << cols - 1 << ": "; cin >> n;
 	}
-	arr = erase_col(arr, rows, cols, n);
+	erase_col(arr, rows, cols, n);
 	Print(arr, rows, cols);
 
 	Clear(arr, rows, cols);

@@ -110,19 +110,19 @@ T* erase(T arr[], int& n, int k)		//удаляет элемент массива
 }
 
 template <typename T>
-T** push_row_front(T** arr, int& rows, const int cols)
+T** push_row_front(T** arr, int& rows, const int cols, T value)
 {
-	arr = insert_row(arr, rows, cols, 0);   //Оптимизация 5
+	arr = insert_row(arr, rows, cols, 0, value);   //Оптимизация 5
 	return arr;
 }
 template <typename T>
-T** push_row_back(T** arr, int& rows, const int cols)
+T** push_row_back(T** arr, int& rows, const int cols, T value)
 {
-	arr = insert_row(arr, rows, cols, rows);   //Оптимизация 5
+	arr = insert_row(arr, rows, cols, rows, value);   //Оптимизация 5
 	return arr;
 }
 template <typename T>
-T** insert_row(T** arr, int& rows, const int cols, int n)
+T** insert_row(T** arr, int& rows, const int cols, int n, T value)
 {
 	//создаем буферный массив указателей нужного размера
 	T** buf = new T* [rows + 1];
@@ -133,7 +133,7 @@ T** insert_row(T** arr, int& rows, const int cols, int n)
 	//добавляем новую строку и записываем ее адрес в массив указателей
 	buf[n] = new T[cols];
 	for (int j = 0; j < cols; j++)
-		buf[n][j] = 333;
+		buf[n][j] = value;
 	for (int i = n+1; i <= rows; i++)
 		buf[i] = arr[i-1];
 
@@ -148,50 +148,34 @@ T** insert_row(T** arr, int& rows, const int cols, int n)
 }
 
 template <typename T>
-T** push_col_front(T** arr, const int rows, int& cols) //добавляет столбец в начало массива
+void push_col_front(T** arr, const int rows, int& cols, T value) //добавляет столбец в начало массива
 {
-	arr = insert_col(arr, rows, cols, 0); //Оптимизация 6
-	return arr;
+	insert_col(arr, rows, cols, 0, value); //Оптимизация 6
 }
 template <typename T>
-T** push_col_back(T** arr, const int rows, int& cols) //добавляет столбец в конец массива
+void push_col_back(T** arr, const int rows, int& cols, T value) //добавляет столбец в конец массива
 {
-	arr = insert_col(arr, rows, cols, cols); //Оптимизация 6
-	return arr;
+	insert_col(arr, rows, cols, cols, value); //Оптимизация 6
 }
 template <typename T>
-T** insert_col(T** arr, const int rows, int& cols, int n) //добавляет столбец в указанное место
+void insert_col(T** arr, const int rows, int& cols, int n, T value) //добавляет столбец в указанное место
 {
-	//создаем буферный массив указателей нужного размера
-	T** buf = new T* [rows];
-	for (int i = 0; i < rows; i++)
-		buf[i] = new T[cols + 1];
-
 	//копируем все значения в буферный массив указателей и вставляем новый элемент в нужную позицию
 	for (int i = 0; i < rows; i++)
 	{
+		T* buf = new T[cols + 1]{};
 		for (int j = 0; j < n; j++)
-			buf[i][j] = arr[i][j];
-		buf[i][n] = 666; //заполняем новый столбец
+			buf[j] = arr[i][j];
+		buf[n] = value; //заполняем новый столбец
 		for (int j = n; j < cols; j++)
-			buf[i][j+1] = arr[i][j];
+			buf[j+1] = arr[i][j];
+		delete[] arr[i];
+		arr[i] = buf;
 		//buf[i] = insert(arr[i], cols, 666, n);
 		//cols--;
 	}
-
-	//удаляем строки
-	for (int i = 0; i < rows; i++)
-	{
-		delete[] arr[i];
-	}
-	//удаляем исходный массив указателей
-	delete[] arr;
-
 	//при добавлении в массив столбца, количество столбцов увеличивается на 1
 	++cols;
-
-	//возвращаем новый массив на место вызова
-	return buf;
 }
 
 template <typename T>
@@ -228,43 +212,30 @@ T** erase_row(T** arr, int& rows, const int cols, int n) //удаляет стр
 }
 
 template <typename T>
-T** pop_col_front(T** arr, const int rows, int& cols) //удаляет столбец из начала массива
+void pop_col_front(T** arr, const int rows, int& cols) //удаляет столбец из начала массива
 {
-	arr = erase_col(arr, rows, cols, 0);
-	return arr;
+	erase_col(arr, rows, cols, 0);
 }
 template <typename T>
-T** pop_col_back(T** arr, const int rows, int& cols) //удаляет столбец в конце массива
+void pop_col_back(T** arr, const int rows, int& cols) //удаляет столбец в конце массива
 {
-	arr = erase_col(arr, rows, cols, cols-1);
-	return arr;
+	erase_col(arr, rows, cols, cols-1);
 }
 template <typename T>
-T** erase_col(T** arr, const int rows, int& cols, int n) //удаляет столбец в указанном месте
+void erase_col(T** arr, const int rows, int& cols, int n) //удаляет столбец в указанном месте
 {
-	//создаем буферный массив указателей нужного размера
-	T** buf = new T* [rows];
 	cols--;
-	for (int i = 0; i < rows; i++)
-		buf[i] = new T[cols];
-
+	
 	//копируем все нужные значения в буферный массив указателей
 	for (int i = 0; i < rows; i++)
 	{
+		T* buf = new T[cols];
 		for (int j = 0; j < n; j++)
-			buf[i][j] = arr[i][j];
+			buf[j] = arr[i][j];
 		for (int j = n; j < cols; j++)
-			buf[i][j] = arr[i][j+1];
-	}
-
-	//удаляем строки
-	for (int i = 0; i < rows; i++)
-	{
+			buf[j] = arr[i][j+1];
 		delete[] arr[i];
+		arr[i] = buf;
 	}
-	//удаляем исходный массив указателей
-	delete[] arr;
 
-	//возвращаем новый массив на место вызова
-	return buf;
 }
