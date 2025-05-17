@@ -160,19 +160,10 @@ void push_col_back(T** arr, const int rows, int& cols, T value) //добавля
 template <typename T>
 void insert_col(T** arr, const int rows, int& cols, int n, T value) //добавляет столбец в указанное место
 {
-	//копируем все значения в буферный массив указателей и вставляем новый элемент в нужную позицию
 	for (int i = 0; i < rows; i++)
 	{
-		T* buf = new T[cols + 1]{};
-		for (int j = 0; j < n; j++)
-			buf[j] = arr[i][j];
-		buf[n] = value; //заполняем новый столбец
-		for (int j = n; j < cols; j++)
-			buf[j+1] = arr[i][j];
-		delete[] arr[i];
-		arr[i] = buf;
-		//buf[i] = insert(arr[i], cols, 666, n);
-		//cols--;
+		arr[i] = insert(arr[i], cols, value, n); //======================новая оптимизация
+		cols--;
 	}
 	//при добавлении в массив столбца, количество столбцов увеличивается на 1
 	++cols;
@@ -224,18 +215,10 @@ void pop_col_back(T** arr, const int rows, int& cols) //удаляет стол�
 template <typename T>
 void erase_col(T** arr, const int rows, int& cols, int n) //удаляет столбец в указанном месте
 {
-	cols--;
-	
-	//копируем все нужные значения в буферный массив указателей
 	for (int i = 0; i < rows; i++)
 	{
-		T* buf = new T[cols];
-		for (int j = 0; j < n; j++)
-			buf[j] = arr[i][j];
-		for (int j = n; j < cols; j++)
-			buf[j] = arr[i][j+1];
-		delete[] arr[i];
-		arr[i] = buf;
+		arr[i] = erase(arr[i], cols, n); //======================новая оптимизация
+		cols++;
 	}
-
+	cols--;
 }
